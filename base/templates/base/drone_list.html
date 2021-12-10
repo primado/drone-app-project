@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <div>
+        <form method="get" action="{% url 'drone-list' %}">
+            <input type="text" name="q" placeholder="Search drones here...">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</div>
+
+<div>
+    
+    <p><a href="{% url 'create-drone' %}">Add Drone</a></p>
+    
+
+</div>
+
+<div>
+    <p>Drone types</p>
+    {% for drone in  drones %}
+        <a href="{% url 'update-drone' drone.id %}">Edit</a>
+        <p>{{drone.id}}. {{drone.drone_type}}</p>
+        <hr>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

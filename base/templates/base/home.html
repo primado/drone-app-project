@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <form method="get" action="{% url 'home' %}">
+        <input type="text" name="q" placeholder="Search patients here...">
+        <input type="submit" value="Search">
+    </form>
+    
+</div>
+
+
+<div>
+    <h3>Here are the list of the patients.</h3>
+    <a href="{% url 'create-patient' %}">Create Patient</a>
+    <p><a href="{% url 'doctor-list' %}">View Doctors</a></p>
+</div>
+<div>
+    {% for patient in patients %}
+        <div>
+            <p><a href="{% url 'update-patient' patient.id %}">Edit</a>
+                <a href="{% url 'delete-patient' patient.id %}">Delete</a>
+
+            </p>
+            <p>{{patient.id}}. {{patient.f_name}} {{patient.l_name}}</p>
+            <hr>
+        </div>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}

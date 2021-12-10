@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <form method="get" action="{% url 'doctor-list' %}">
+        <input type="text" name="q" placeholder="Search doctors here...">
+        <input type="submit" value="Search">
+    </form>
+</div>
+
+<div>
+    <p><a href="{{ request.META.HTTP_REFERER }}">GO BACK</a></p>
+</div>
+
+<div>
+    <p><a href="{% url 'create-doctor' %}">Add Doctor</a></p>
+    {% for doctor in doctors %}
+        <div>
+            <a href="{% url 'update-doctor' doctor.id %}">Edit</a>
+            <p>{{doctor.id}}. {{doctor.f_name}} {{doctor.l_name}}</p>
+            <hr>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
